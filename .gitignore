@@ -141,3 +141,4 @@ vite.config.ts.timestamp-*
 # Etc
 .idea
 .meteor
+package-lock.json
