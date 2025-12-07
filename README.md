@@ -1,2 +1,9 @@
-# meteor-graphql
-menu service
+### meteor-graphql  
+  
+spec
+``` text
+node
+meteor
+apollo
+graphql
+```
