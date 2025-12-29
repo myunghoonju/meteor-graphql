@@ -1,5 +1,5 @@
 import { Categories, Items } from "../collections";
-import { ALL } from 'imports/utils/constants';
+import { ALL } from '/imports/utils/constants';
 
 const pageSize = 15;
 
@@ -67,42 +67,42 @@ const queries = {
         try {
             return await Items.find(setFilters, setOptions);
         } catch (e) {
-            throw `itemPageCount errors: ${e}`;
+            throw `items errors: ${e}`;
         }
     },
 
-    async itemPageCount(_, args, context, info) {
-        let search = '';
-        let setFilters = {};
-
-        if (args.search) {
-            search = args.search;
-        }
-
-        if (search) {
-            setFilters.itemName = RegExp(search);
-        }
-
-        let itemCategoryId = '';
-        if (args.itemCategoryId) {
-            itemCategoryId = args.itemCategoryId;
-        }
-
-        if (itemCategoryId === ALL) {
-            itemCategoryId = '';
-        }
-
-        if (itemCategoryId) {
-            setFilters.itemCategoryId = itemCategoryId;
-        }
-
-        try {
-            const cnt = Items.find(setFilters).count();
-            return Math.ceil(cnt / pageSize);
-        } catch (e) {
-            throw `itemPageCount errors: ${e}`;
-        }
-    }
+    // async itemPageCount(_, args) {
+    //     let search = '';
+    //     let setFilters = {};
+    //
+    //     if (args.search) {
+    //         search = args.search;
+    //     }
+    //
+    //     if (search) {
+    //         setFilters.itemName = RegExp(search);
+    //     }
+    //
+    //     let itemCategoryId = '';
+    //     if (args.itemCategoryId) {
+    //         itemCategoryId = args.itemCategoryId;
+    //     }
+    //
+    //     if (itemCategoryId === ALL) {
+    //         itemCategoryId = '';
+    //     }
+    //
+    //     if (itemCategoryId) {
+    //         setFilters.itemCategoryId = itemCategoryId;
+    //     }
+    //
+    //     try {
+    //         const cnt = Items.find(setFilters).count();
+    //         return Math.ceil(cnt / pageSize);
+    //     } catch (e) {
+    //         throw `itemPageCount errors: ${e}`;
+    //     }
+    // }
 }
 
 export default queries;

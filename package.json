@@ -5,7 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "@apollo/server": "^5.2.0",
+    "@apollo/server": "^4.10.0",
     "@babel/runtime": "^7.23.5",
     "@graphql-tools/schema": "^9.0.19",
     "body-parser": "^2.2.1",

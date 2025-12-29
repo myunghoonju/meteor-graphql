@@ -1,5 +1,5 @@
 import { Categories, Items } from "../collections";
-import { currentDate } from "imports/utils/formatDate";
+import { currentDate } from "/imports/utils/formatDate";
 
 const mutations = {
     // args.categoryName
@@ -82,9 +82,9 @@ const mutations = {
 
     },
 
-    async deleteFile(_, {  }) {
-
-    }
+    // async deleteFile(_, {  }) {
+    //
+    // }
 }
 
 export default mutations;
