@@ -71,38 +71,38 @@ const queries = {
         }
     },
 
-    // async itemPageCount(_, args) {
-    //     let search = '';
-    //     let setFilters = {};
-    //
-    //     if (args.search) {
-    //         search = args.search;
-    //     }
-    //
-    //     if (search) {
-    //         setFilters.itemName = RegExp(search);
-    //     }
-    //
-    //     let itemCategoryId = '';
-    //     if (args.itemCategoryId) {
-    //         itemCategoryId = args.itemCategoryId;
-    //     }
-    //
-    //     if (itemCategoryId === ALL) {
-    //         itemCategoryId = '';
-    //     }
-    //
-    //     if (itemCategoryId) {
-    //         setFilters.itemCategoryId = itemCategoryId;
-    //     }
-    //
-    //     try {
-    //         const cnt = Items.find(setFilters).count();
-    //         return Math.ceil(cnt / pageSize);
-    //     } catch (e) {
-    //         throw `itemPageCount errors: ${e}`;
-    //     }
-    // }
+    async itemPageCount(_, args) {
+        let search = '';
+        let setFilters = {};
+
+        if (args.search) {
+            search = args.search;
+        }
+
+        if (search) {
+            setFilters.itemName = RegExp(search);
+        }
+
+        let itemCategoryId = '';
+        if (args.itemCategoryId) {
+            itemCategoryId = args.itemCategoryId;
+        }
+
+        if (itemCategoryId === ALL) {
+            itemCategoryId = '';
+        }
+
+        if (itemCategoryId) {
+            setFilters.itemCategoryId = itemCategoryId;
+        }
+
+        try {
+            const cnt = Items.find(setFilters).count();
+            return Math.ceil(cnt / pageSize);
+        } catch (e) {
+            throw `itemPageCount errors: ${e}`;
+        }
+    }
 }
 
 export default queries;
