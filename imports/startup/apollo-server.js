@@ -28,7 +28,7 @@ import typeDefOrder from '/imports/api/order/schemas';
     // await is necessary
     await server.start();
 
-    app.use(json(), cors(), express.json(), expressMiddleware(server, {}));
+    app.use(json(), cors(), expressMiddleware(server, {}));
 
     WebApp.connectHandlers.use('/graphql', app);
 })();
