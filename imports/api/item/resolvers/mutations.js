@@ -18,7 +18,7 @@ const mutations = {
     async updateCategory(_, { _id, categoryName }) {
         const categoryValue = { categoryName: categoryName };
         try {
-            return await Categories.update({ _id: id },{ $set: categoryValue });
+            return await Categories.update({ _id: _id },{ $set: categoryValue });
         } catch (e) {
             throw `updateCategory error: ${e}`;
         }
