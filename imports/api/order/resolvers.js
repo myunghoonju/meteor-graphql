@@ -1,5 +1,9 @@
 import Orders from './collections'
 import {currentDate} from '/imports/utils/formatDate';
+import { ORDER_ADDED } from "/imports/utils/constants";
+import { PubSub } from 'graphql-subscriptions';
+
+const pubsub = new PubSub;
 
 const queries = {
     // _(parent): 부모로 부터 전달받은 값
@@ -30,7 +34,12 @@ const mutations = {
         }
 
         try {
-            return await Orders.insert(orderValues);
+            const result = await Orders.insert(orderValues);
+
+            orderValues._id = result;
+            await pubsub.publish(ORDER_ADDED, { orderAdded: orderValues });
+
+            return result;
         } catch (e) {
             throw `orders add error: ${e}`;
         }
@@ -50,9 +59,18 @@ const mutations = {
     }
 }
 
+const subscriptions = {
+    orderAdded: {
+        subscribe: () => {
+            return pubsub.asyncIterator(ORDER_ADDED);
+        }
+    }
+}
+
 const resolvers = {
     Query: queries,
-    Mutation: mutations
+    Mutation: mutations,
+    Subscription: subscriptions
 }
 
 export default resolvers;
